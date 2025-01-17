@@ -16,6 +16,8 @@
 const sumOfString = (str) => {
     try {
         if (!str) return 0
+        str = str.split(",").map(s => Number(s))
+        return str.reduce((acc, curr) => acc + curr, 0)
     } catch (e) {
         console.error("sumOfString", e)
     }
