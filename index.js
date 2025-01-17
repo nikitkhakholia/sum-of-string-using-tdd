@@ -23,7 +23,7 @@ const sumOfString = (str) => {
             str = str.replace(delimiter[1], ",")
         }
         str = str.replace("\n", ",")
-        str = str.split(",").map(s => Number(s))
+        str = str.split(",").map(s => Number(s)).filter(s => s <= 1000)
         var negetives = str.filter(s => s < 0)
         if (negetives.length) throw new Error("negative numbers not allowed " + negetives.join(","))
         return str.reduce((acc, curr) => acc + curr, 0)
@@ -43,6 +43,7 @@ const testSumOfString = () => {
         assert.throws(() => sumOfString("-1,1,-3"), Error, "negative numbers not allowed -1,-3", "Test Case 4 *** Negative numbers are not allowed ***")
         assert.equal(sumOfString("2,3\n4"), 9, "Test Case 5 *** Sum of 2,3,4 should return 9 ***")
         assert.equal(sumOfString("//[*],2,3\n4"), 9, "Test Case 6 *** Sum of 2,3,4 should return 9 ***")
+        assert.equal(sumOfString("1000,2000,3,4"), 1007, "Test Case 7 *** Sum of 1000,2000,3,4 should return 1007 ***")
         console.log("all test cases passed");
 
     } catch (err) {
