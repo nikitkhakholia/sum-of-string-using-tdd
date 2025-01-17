@@ -15,6 +15,7 @@
 // Returns sum of string and supports above cases
 const sumOfString = (str) => {
     try {
+        if (!str) return 0
     } catch (e) {
         console.error("sumOfString", e)
     }
