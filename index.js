@@ -17,9 +17,12 @@ const sumOfString = (str) => {
     try {
         if (!str) return 0
         str = str.split(",").map(s => Number(s))
+        var negetives = str.filter(s => s < 0)
+        if (negetives.length) throw new Error("negative numbers not allowed " + negetives.join(","))
         return str.reduce((acc, curr) => acc + curr, 0)
     } catch (e) {
         console.error("sumOfString", e)
+        throw e
     }
 }
 
