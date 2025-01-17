@@ -16,6 +16,12 @@
 const sumOfString = (str) => {
     try {
         if (!str) return 0
+        if (str.startsWith("//")) {
+            var regex = /\/\/\[(.*?)\](\\n|,)/
+            var delimiter = str.match(regex)
+            str = str.replace(delimiter[0], "")
+            str = str.replace(delimiter[1], ",")
+        }
         str = str.replace("\n", ",")
         str = str.split(",").map(s => Number(s))
         var negetives = str.filter(s => s < 0)
@@ -36,6 +42,7 @@ const testSumOfString = () => {
         assert.equal(sumOfString("2,3,4,5,6,7,8,9,10,99"), (2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 + 99), "Test Case 3 *** Sum of 2,3,4,5,6,7,8,9,10,99 should return 153 ***")
         assert.throws(() => sumOfString("-1,1,-3"), Error, "negative numbers not allowed -1,-3", "Test Case 4 *** Negative numbers are not allowed ***")
         assert.equal(sumOfString("2,3\n4"), 9, "Test Case 5 *** Sum of 2,3,4 should return 9 ***")
+        assert.equal(sumOfString("//[*],2,3\n4"), 9, "Test Case 6 *** Sum of 2,3,4 should return 9 ***")
         console.log("all test cases passed");
 
     } catch (err) {
