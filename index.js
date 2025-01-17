@@ -16,14 +16,29 @@
 const sumOfString = (str) => {
     try {
         if (!str) return 0
+        //delimiters support 
         if (str.startsWith("//")) {
-            var regex = /\/\/\[(.*?)\](\\n|,)/
-            var delimiter = str.match(regex)
-            str = str.replace(delimiter[0], "")
-            str = str.replace(delimiter[1], ",")
+            str = str.replace("//", "")
+
+            // identifying delimiters
+            var regex = /\[([^\]]+)\]/g
+            var delimiters = []
+            var match
+            while ((match = regex.exec(str)) !== null) {
+                delimiters.push(match[1]);
+            }
+            // replacing delimiters with ','
+            delimiters.forEach(delimiter => {
+                str = str.replace(`[${delimiter}]`, "")
+                str = str.replaceAll(delimiter, ",")
+            })
+            str = str.slice(1)
         }
+        // supporting \n and ,
         str = str.replace("\n", ",")
+        // more than 1000 numbers are ignored
         str = str.split(",").map(s => Number(s)).filter(s => s <= 1000)
+        // negetives check
         var negetives = str.filter(s => s < 0)
         if (negetives.length) throw new Error("negative numbers not allowed " + negetives.join(","))
         return str.reduce((acc, curr) => acc + curr, 0)
@@ -46,6 +61,10 @@ const testSumOfString = () => {
         assert.equal(sumOfString("1000,2000,3,4"), 1007, "Test Case 7 *** Sum of 1000,2000,3,4 should return 1007 ***")
         assert.equal(sumOfString("//[**],2**3\n4"), 9, "Test Case 8 *** Sum of 2,3,4 should return 9 ***")
         assert.equal(sumOfString("//[#],2#3\n4"), 9, "Test Case 6 *** Sum of 2,3,4 should return 9 ***")
+        assert.equal(sumOfString("//[*][%]\n1*2%3"), 6, "Test Case 9 *** Sum of 1,2,3 should return 6 ***")
+        assert.equal(sumOfString("//[***]\n1***2***3"), 6, "Test Case 10 *** Sum of 1,2,3 should return 6 ***")
+
+        assert.equal(sumOfString("//[***][%%]\n1***2%%3"), 6, "Test Case *** Sum of 1,2,3 should return 6 ***")
         console.log("all test cases passed");
 
     } catch (err) {
