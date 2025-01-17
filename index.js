@@ -9,3 +9,28 @@
 // 8.  Delimiters can be of any length with the following format: “//[delimiter]\n”
 // 9.  Allow multiple delimiters like this: “//[delim1][delim2]\n”
 // 10.  Make sure you can also handle multiple delimiters with length longer than one char
+
+
+
+// Returns sum of string and supports above cases
+const sumOfString = (str) => {
+    try {
+    } catch (e) {
+        console.error("sumOfString", e)
+    }
+}
+
+import { assert } from "chai"
+// Test cases for 'sumOfString' function defined above
+const testSumOfString = () => {
+    try {
+        assert.equal(sumOfString(""), 0, "Test Case 1  *** Empty string should return 0 ***")
+        console.log("all test cases passed");
+
+    } catch (err) {
+        console.error("Test Failed ->", err.message)
+    }
+}
+
+// Run test function
+testSumOfString()
