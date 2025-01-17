@@ -45,6 +45,7 @@ const testSumOfString = () => {
         assert.equal(sumOfString("//[*],2,3\n4"), 9, "Test Case 6 *** Sum of 2,3,4 should return 9 ***")
         assert.equal(sumOfString("1000,2000,3,4"), 1007, "Test Case 7 *** Sum of 1000,2000,3,4 should return 1007 ***")
         assert.equal(sumOfString("//[**],2**3\n4"), 9, "Test Case 8 *** Sum of 2,3,4 should return 9 ***")
+        assert.equal(sumOfString("//[#],2#3\n4"), 9, "Test Case 6 *** Sum of 2,3,4 should return 9 ***")
         console.log("all test cases passed");
 
     } catch (err) {
