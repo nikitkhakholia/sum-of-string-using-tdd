@@ -26,6 +26,7 @@ import { assert } from "chai"
 const testSumOfString = () => {
     try {
         assert.equal(sumOfString(""), 0, "Test Case 1  *** Empty string should return 0 ***")
+        assert.equal(sumOfString("2,3"), 5, "Test Case 2  *** Sum of 2,3 should return 5 ***")
         console.log("all test cases passed");
 
     } catch (err) {
