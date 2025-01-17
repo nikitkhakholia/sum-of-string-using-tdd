@@ -29,6 +29,7 @@ const testSumOfString = () => {
     try {
         assert.equal(sumOfString(""), 0, "Test Case 1  *** Empty string should return 0 ***")
         assert.equal(sumOfString("2,3"), 5, "Test Case 2  *** Sum of 2,3 should return 5 ***")
+        assert.equal(sumOfString("2,3,4,5,6,7,8,9,10,99"), (2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 + 99), "Test Case 3 *** Sum of 2,3,4,5,6,7,8,9,10,99 should return 153 ***")
         console.log("all test cases passed");
 
     } catch (err) {
