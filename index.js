@@ -16,6 +16,7 @@
 const sumOfString = (str) => {
     try {
         if (!str) return 0
+        str = str.replace("\n", ",")
         str = str.split(",").map(s => Number(s))
         var negetives = str.filter(s => s < 0)
         if (negetives.length) throw new Error("negative numbers not allowed " + negetives.join(","))
